@@ -1,0 +1,47 @@
+#KNN Code#
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+neigh = KNeighborsClassifier(n_neighbors = k).fit(X_train,y_train)
+neigh
+yhat = neigh.predict(X_test)
+yhat[0:5]
+print("Train set Accuracy: ", metrics.accuracy_score(y_train, neigh.predict(X_train)))
+print("Test set Accuracy: ", metrics.accuracy_score(y_test, yhat))
+X_train, X_test, y_train, y_test = train_test_split( X, y, test_size=0.2, random_state=4)
+print ('Train set:', X_train.shape,  y_train.shape)
+print ('Test set:', X_test.shape,  y_test.shape)
+k = 6
+neigh6 = KNeighborsClassifier(n_neighbors = k).fit(X_train,y_train)
+yhat6 = neigh6.predict(X_test)
+print("Train set Accuracy: ", metrics.accuracy_score(y_train, neigh6.predict(X_train)))
+
+plt.plot(range(1,Ks),mean_acc,'g')
+plt.fill_between(range(1,Ks),mean_acc - 1 * std_acc,mean_acc + 1 * std_acc, alpha=0.10)
+plt.fill_between(range(1,Ks),mean_acc - 3 * std_acc,mean_acc + 3 * std_acc, alpha=0.10,color="green")
+plt.legend(('Accuracy ', '+/- 1xstd','+/- 3xstd'))
+plt.ylabel('Accuracy ')
+plt.xlabel('Number of Neighbors (K)')
+plt.tight_layout()
+plt.show()
+
+print( "The best accuracy was with", mean_acc.max(), "with k=", mean_acc.argmax()+1) 
+
+
+#Decision Tree#
+!wget -O loan_train.csv https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBMDeveloperSkillsNetwork-ML0101EN-SkillsNetwork/labs/FinalModule_Coursera/data/loan_train.csv
+df = pd.read_csv('loan_train.csv')
+Feature = df[['Principal','terms','age','Gender','effective_date']]
+X = Feature
+X[0:5]
+y = df['loan_status'].values
+y[0:5]
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=3)
+
+drugTree = DecisionTreeClassifier(criterion="entropy", max_depth = 4)
+drugTree 
+drugTree.fit(X_train,y_train)
+
+tree.plot_tree(drugTree)
+plt.show()
